@@ -6,9 +6,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-public class FakeStoreRatingDto
-{
-    private Double rate;
-    private Long count;
+public class CategoryDto {
+    private String name;
+    private String description;
 }
