@@ -41,6 +41,12 @@ public class ProductController {
         return productService.replaceProduct(id, getProduct(productDto));
     }
 
+    @GetMapping("{pid}/{uid}")
+    private ProductDto getProductDetails(@PathVariable Long pid, @PathVariable Long uid){
+        Product product = productService.getProductDetails(pid,uid);
+        return getProductDto(product);
+    }
+
     private Product getProduct(ProductDto productDto) {
         Product product = new Product();
         product.setId(productDto.getId());
@@ -56,5 +62,22 @@ public class ProductController {
             product.setCategory(category);
         }
         return product;
+    }
+
+    private ProductDto getProductDto(Product product) {
+        ProductDto productDto = new ProductDto();
+        productDto.setId(product.getId());
+        productDto.setTitle(product.getTitle());
+        productDto.setName(product.getName());
+        productDto.setDescription(product.getDescription());
+        productDto.setPrice(product.getPrice());
+        productDto.setImageUrl(product.getImageUrl());
+        if(product.getCategory() != null){
+            Category category = new Category();
+            category.setName(product.getCategory().getName());
+            category.setDescription(product.getCategory().getDescription());
+            product.setCategory(category);
+        }
+        return productDto;
     }
 }
