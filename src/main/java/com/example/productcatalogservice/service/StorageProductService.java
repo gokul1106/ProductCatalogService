@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Primary
 @Service
 public class StorageProductService implements IProductService{
     @Autowired
